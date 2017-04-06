@@ -67,7 +67,7 @@ section:last-child {
 	padding-right: 20px;
 }
 .sidebar-gutter {
-	padding-left: 50px;
+	padding-left: 15px;
 }
 .navbar .navbar-nav > li > a {
 	color:#fff;
@@ -116,6 +116,7 @@ header {
 	color: #fff;
 	text-align: center;
 	line-height: 50px;
+	border: none;
 }
 .main-slider img {
 	position: relative;
