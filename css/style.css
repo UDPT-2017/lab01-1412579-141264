@@ -234,7 +234,7 @@ header {
 }
 /*- Sidebar -*/
 .sidebar-title {
-	background-color: #2B2B2B;
+	background-color: #3498DB;
 	color: #fff;
 	text-align: center;
 	text-transform: uppercase;
@@ -365,7 +365,7 @@ footer .footer-socials {
 footer .footer-socials a {
 	display: inline-block;
 	margin-right: 5px;
-	background-color: #626165;
+	background-color: #3498DB;
 	color: #fff;
 	/* padding: 20px; */
 	font-size: 20px;
@@ -379,7 +379,7 @@ footer .footer-socials a {
 	transition: all 0.2s ease-out;
 }
 footer .footer-socials a:hover {
-	background-color: #dddddd;
+	background-color: #980d17;
 }
 footer .footer-bottom {
 	padding: 10px 0 40px;
@@ -411,4 +411,24 @@ footer .footer-bottom {
     margin-left: 10px;
   }
   #offcanvasleft,#offcanvasright{margin-top:10px;}
+}
+.navbar-inverse{
+	background-color: #3498DB;
+	border-color: #980d17;
+}
+
+.navbar-inverse .navbar-toggle {
+    border-color: #980d17;
+}
+
+.navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover {
+    background-color: rgba(255,255,255,.1);
+}
+
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover{
+	background-color: rgba(255,255,255,.1);
+}
+
+.navbar-inverse .navbar-nav>li>a:focus, .navbar-inverse .navbar-nav>li>a:hover {
+	background-color: rgba(255,255,255,.1);
 }
