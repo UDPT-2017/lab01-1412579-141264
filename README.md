@@ -1,9 +1,9 @@
-# BT-UDPT-1 - *Name of your app*
+# BT-UDPT-1 - *Mini SNS*
 
-**Name of your app** là một bài tập 1 tại môn UDPT.
+**Mini SNS** là một bài tập 1 tại môn UDPT.
 
 Thành viên:
-* [ ] **MSSV1** Tên sinh viên 1 (tên tài khoản github)
+* [ ] **1412579** Vũ Minh Trí (tên tài khoản github: boyvmt)
 * [ ] **MSSV2** Tên sinh viên 2 (tên tài khoản github)
 
 URL: **URL hosting của bài tập**
