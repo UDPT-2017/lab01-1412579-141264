@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<link rel="icon" href="images/favicon.ico">
+		<title>Mini SNS | Bootstrap and NodeJS</title>
+		<!-- Bootstrap core CSS -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+		<!-- Custom styles for this template -->
+		<link href="css/jquery.bxslider.css" rel="stylesheet">
+		<link href="css/style.css" rel="stylesheet">
+	</head>
+	<body>
+		<!-- Navigation -->
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+					<p class="pull-left visible-xs">
+                    <button id="offcanvasleft" class="navbar-toggle collapsed" type="button" data-toggle="offcanvasleft"><i style="color: white;" class="glyphicon glyphicon-chevron-left"></i></button>
+                	</p>
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					</button>
+				</div>
+				<div id="navbar" class="collapse navbar-collapse">
+					<ul class="nav navbar-nav">
+						<li  class=""><a href="index.html">Home</a></li>
+						<li class="active"><a href="blog.html">Blog</a></li>
+						<li><a href="#contact">Album</a></li>
+						<li><a href="about.html">About</a></li>
+					</ul>
+
+					<ul class="nav navbar-nav navbar-right">
+						<li><a target="" href=""><i class="glyphicon glyphicon-log-in"></i>  Đăng nhập</a></li>
+					</ul>
+
+				</div>
+				<!--/.nav-collapse -->
+			</div>
+		</nav>
+
+		<div class="container">
+		<header>
+			<a href="index.html"><img src="images/logo.png"></a>
+		</header>
+		<section class="main-slider">
+			<ul class="bxslider">
+				<li><div class="slider-item"><img src="http://placehold.it/1140x500" title="Funky roots" /><h2><a href="post.html" title="Vintage-Inspired Finds for Your Home">Vintage-Inspired Finds for Your Home</a></h2></div></li>
+				<li><div class="slider-item"><img src="http://placehold.it/1140x500" title="Funky roots" /><h2><a href="post.html" title="Vintage-Inspired Finds for Your Home">Vintage-Inspired Finds for Your Home</a></h2></div></li>
+				<li><div class="slider-item"><img src="http://placehold.it/1140x500" title="Funky roots" /><h2><a href="post.html" title="Vintage-Inspired Finds for Your Home">Vintage-Inspired Finds for Your Home</a></h2></div></li>
+			</ul>
+		</section>
+		<section>
+			<div class="row row-offcanvas row-offcanvas-left">
+				<div class="col-md-8 float">
+					<article class="blog-post">
+					<ol class="breadcrumb">
+					  <li class="breadcrumb-item"><a href="#">Home</a></li>
+					  <li class="breadcrumb-item"><a href="#">Blog</a></li>					 	
+					</ol>
+						<div class="blog-post-image">
+							<a href="post.html"><img src="http://placehold.it/750x500" alt=""></a>
+						</div>
+						<div class="blog-post-body">
+							<h2><a href="post.html">Vintage-Inspired Finds for Your Home</a></h2>
+							<div class="post-meta"><span>by <a href="#">Jamie Mooze</a></span>/<span><i class="fa fa-clock-o"></i>March 14, 2015</span>/<span><i class="fa fa-eye"></i> <a href="#">343</a></span></div>
+							<div class="blog-post-text">
+
+								<p>A newly-developed mathematical method can detect geometric structure in neural activity in the brain. “Previously, in order to understand this structure, scientists needed to relate neural activity to some specific external stimulus,” said Vladimir Itskov, associate professor of mathematics at Penn State University. “Our method is the first to be able to reveal this structure without our knowing an external stimulus ahead of time. We’ve now shown that our new method will allow us to explore the organizational structure of neurons without knowing their function in advance.”</p>
+
+								<p>“The traditional methods used by researchers to analyze the relationship between the activities of neurons were adopted from physics,” said Carina Curto, associate professor of mathematics at Penn State, “but neuroscience data doesn’t necessarily play by the same rules as data from physics, so we need new tools. Our method is a first step toward developing a new mathematical toolkit to uncover the structure of neural circuits with unknown function in the brain.”</p>
+
+								<h3>Math reveals structure in neural activity in the brain</h3>
+								<p>The method — clique topology — was developed by an interdisciplinary team of researchers at Penn State, the University of Pennsylvania, the Howard Hughes Medical Institute, and the University of Nebraska-Lincoln. The method is described in a paper that will be posted in the early online edition of the journal Proceedings of the National Academy of Sciences during the week ending October 23, 2015.</p>
+
+								<p>“We have adopted approaches from the field of algebraic topology that previously had been used primarily in the domain of pure mathematics and have applied them to experimental data on the activity of place cells — specialized neurons in the part of the brain called the hippocampus that sense the position of an animal in its environment,” said Curto.</p>
+							</div>
+						</div>
+					</article>
+					<div class="row">
+						<div class="widget-area no-padding blank">
+						<h2>Comment</h2>
+							<div class="status-upload">
+								<form>
+									<textarea placeholder="What are you thinking about?" ></textarea>
+									<ul>
+										<li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Audio"><i class="fa fa-music"></i></a></li>
+										<li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Video"><i class="fa fa-video-camera"></i></a></li>
+										<li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Sound Record"><i class="fa fa-microphone"></i></a></li>
+										<li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Picture"><i class="fa fa-picture-o"></i></a></li>
+									</ul>
+									<button type="submit" class="btn btn-success green"><i class="fa fa-share"></i> Share</button>
+								</form>
+							</div><!-- Status Upload  -->
+						</div><!-- Widget Area -->
+					</div>
+					<div class="row">
+						<div class="panel panel-white post panel-shadow">
+			                <div class="post-heading">
+			                    <div class="pull-left image">
+			                        <img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">
+			                    </div>
+			                    <div class="pull-left meta">
+			                        <div class="title h5">
+			                            <a href="#"><b>Ryan Haywood</b></a>
+			                            made a post.
+			                        </div>
+			                        <h6 class="text-muted time">1 minute ago</h6>
+			                    </div>
+			                </div> 
+			                <div class="post-description"> 
+			                    <p>Bootdey is a gallery of free snippets resources templates and utilities for bootstrap css hmtl js framework. Codes for developers and web designers</p>
+<!-- 			                    <div class="stats">
+			                        <a href="#" class="btn btn-default stat-item">
+			                            <i class="fa fa-thumbs-up icon"></i>2
+			                        </a>
+			                        <a href="#" class="btn btn-default stat-item">
+			                            <i class="fa fa-thumbs-down icon"></i>12
+			                        </a>
+			                    </div> -->
+			                </div>
+			            </div>
+			            <div class="panel panel-white post panel-shadow">
+			                <div class="post-heading">
+			                    <div class="pull-left image">
+			                        <img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">
+			                    </div>
+			                    <div class="pull-left meta">
+			                        <div class="title h5">
+			                            <a href="#"><b>Ryan Haywood</b></a>
+			                            made a post.
+			                        </div>
+			                        <h6 class="text-muted time">1 minute ago</h6>
+			                    </div>
+			                </div> 
+			                <div class="post-description"> 
+			                    <p>Bootdey is a gallery of free snippets resources templates and utilities for bootstrap css hmtl js framework. Codes for developers and web designers</p>
+<!-- 			                    <div class="stats">
+			                        <a href="#" class="btn btn-default stat-item">
+			                            <i class="fa fa-thumbs-up icon"></i>2
+			                        </a>
+			                        <a href="#" class="btn btn-default stat-item">
+			                            <i class="fa fa-thumbs-down icon"></i>12
+			                        </a>
+			                    </div> -->
+			                </div>
+			            </div>
+					</div>
+					
+
+				</div>
+	            
+
+				<div class="col-md-4 sidebar-gutter">
+					<div class="sidebar-offcanvas" id="sidebarLeft" role="navigation">
+					<!-- sidebar-widget -->
+					<div class="sidebar-widget">
+						<h3 class="sidebar-title col-md-12 col-xs-12">Lastest Post</h3>
+						<div class="widget-container">
+							<article class="widget-post">
+								<div class="post-image">
+									<a href="post.html"><img src="http://placehold.it/90x60" alt=""></a>
+								</div>
+								<div class="post-body">
+									<h2><a href="post.html">The State of the Word 2014</a></h2>
+									<div class="post-meta">
+										<span><i class="fa fa-clock-o"></i> 2. august 2015</span> <span><a href="post.html"><i class="fa fa-eye"></i> 23</a></span>
+									</div>
+								</div>
+							</article>
+							<article class="widget-post">
+								<div class="post-image">
+									<a href="post.html"><img src="http://placehold.it/90x60" alt=""></a>
+								</div>
+								<div class="post-body">
+									<h2><a href="post.html">Why The Muppets Needs to Channel 30 Rock</a></h2>
+									<div class="post-meta">
+										<span><i class="fa fa-clock-o"></i> 2. august 2015</span> <span><a href="post.html"><i class="fa fa-eye"></i> 23</a></span>
+									</div>
+								</div>
+							</article>
+							<article class="widget-post">
+								<div class="post-image">
+									<a href="post.html"><img src="http://placehold.it/90x60" alt=""></a>
+								</div>
+								<div class="post-body">
+									<h2><a href="post.html">The State of the Word 2014</a></h2>
+									<div class="post-meta">
+										<span><i class="fa fa-clock-o"></i> 2. august 2015</span> <span><a href="post.html"><i class="fa fa-eye"></i> 23</a></span>
+									</div>
+								</div>
+							</article>
+							<article class="widget-post">
+								<div class="post-image">
+									<a href="post.html"><img src="http://placehold.it/90x60" alt=""></a>
+								</div>
+								<div class="post-body">
+									<h2><a href="post.html">Vintage-Inspired Finds for Your Home</a></h2>
+									<div class="post-meta">
+										<span><i class="fa fa-clock-o"></i> 2. august 2015</span> <span><a href="post.html"><i class="fa fa-eye"></i> 23</a></span>
+									</div>
+								</div>
+							</article>
+							<article class="widget-post">
+								<div class="post-image">
+									<a href="post.html"><img src="http://placehold.it/90x60" alt=""></a>
+								</div>
+								<div class="post-body">
+									<h2><a href="post.html">The State of the Word 2014</a></h2>
+									<div class="post-meta">
+										<span><i class="fa fa-clock-o"></i> 2. august 2015</span> <span><a href="post.html"><i class="fa fa-eye"></i> 23</a></span>
+									</div>
+								</div>
+							</article>
+						</div>
+					</div>
+					<!-- sidebar-widget -->
+					<div class="sidebar-widget">
+						<h3 class="sidebar-title">Featured Posts</h3>
+						<div class="widget-container">
+							<article class="widget-post">
+								<div class="post-image">
+									<a href="post.html"><img src="http://placehold.it/90x60" alt=""></a>
+								</div>
+								<div class="post-body">
+									<h2><a href="post.html">The State of the Word 2014</a></h2>
+									<div class="post-meta">
+										<span><i class="fa fa-clock-o"></i> 2. august 2015</span> <span><a href="post.html"><i class="fa fa-eye"></i> 23</a></span>
+									</div>
+								</div>
+							</article>
+							<article class="widget-post">
+								<div class="post-image">
+									<a href="post.html"><img src="http://placehold.it/90x60" alt=""></a>
+								</div>
+								<div class="post-body">
+									<h2><a href="post.html">Why The Muppets Needs to Channel 30 Rock</a></h2>
+									<div class="post-meta">
+										<span><i class="fa fa-clock-o"></i> 2. august 2015</span> <span><a href="post.html"><i class="fa fa-eye"></i> 23</a></span>
+									</div>
+								</div>
+							</article>
+							<article class="widget-post">
+								<div class="post-image">
+									<a href="post.html"><img src="http://placehold.it/90x60" alt=""></a>
+								</div>
+								<div class="post-body">
+									<h2><a href="post.html">The State of the Word 2014</a></h2>
+									<div class="post-meta">
+										<span><i class="fa fa-clock-o"></i> 2. august 2015</span> <span><a href="post.html"><i class="fa fa-eye"></i> 23</a></span>
+									</div>
+								</div>
+							</article>
+							<article class="widget-post">
+								<div class="post-image">
+									<a href="post.html"><img src="http://placehold.it/90x60" alt=""></a>
+								</div>
+								<div class="post-body">
+									<h2><a href="post.html">Vintage-Inspired Finds for Your Home</a></h2>
+									<div class="post-meta">
+										<span><i class="fa fa-clock-o"></i> 2. august 2015</span> <span><a href="post.html"><i class="fa fa-eye"></i> 23</a></span>
+									</div>
+								</div>
+							</article>
+							<article class="widget-post">
+								<div class="post-image">
+									<a href="post.html"><img src="http://placehold.it/90x60" alt=""></a>
+								</div>
+								<div class="post-body">
+									<h2><a href="post.html">The State of the Word 2014</a></h2>
+									<div class="post-meta">
+										<span><i class="fa fa-clock-o"></i> 2. august 2015</span> <span><a href="post.html"><i class="fa fa-eye"></i> 23</a></span>
+									</div>
+								</div>
+							</article>
+						</div>
+					</div>
+					
+					<!-- sidebar-widget -->
+					<div class="sidebar-widget">
+						<h3 class="sidebar-title">Categories</h3>
+						<div class="widget-container">
+							<ul>
+								<li><a href="#">Fashion</a></li>
+								<li><a href="#">Art</a></li>
+								<li><a href="#">Design</a></li>
+								<li><a href="#">Featured</a></li>
+								<li><a href="#">Graphics</a></li>
+								<li><a href="#">Peoples</a></li>
+								<li><a href="#">Uncategorized</a></li>
+							</ul>
+						</div>
+					</div>
+					<!-- sidebar-widget -->
+					<div class="sidebar-widget">
+						<img src="http://placehold.it/600x900" class="img-rounded" alt="">
+					</div>
+					<!-- sidebar-widget -->
+
+					</div>
+					
+					</div>
+				</div>
+			</div>
+		</section>
+		</div><!-- /.container -->
+
+		<footer class="footer">
+
+			<div class="footer-socials">
+				<a href="#"><i class="fa fa-facebook"></i></a>
+				<a href="#"><i class="fa fa-twitter"></i></a>
+				<a href="#"><i class="fa fa-instagram"></i></a>
+			</div>
+
+			<div class="footer-bottom">
+				<i class="fa fa-copyright"></i> Copyright 2017. All rights reserved.<br>
+			</div>
+		</footer>
+
+		<!-- Bootstrap core JavaScript
+			================================================== -->
+		<!-- Placed at the end of the document so the pages load faster -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/jquery.bxslider.js"></script>
+		<script src="js/mooz.scripts.min.js"></script>
+		<script type="text/javascript">
+            
+            $('#offcanvasleft').click(function() {
+              $('.row-offcanvas-left').toggleClass('active');
+            });
+
+
+    </script>
+	</body>
+</html>
