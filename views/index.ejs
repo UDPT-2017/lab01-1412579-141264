@@ -40,7 +40,22 @@
 					</ul>
 
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="login"><i class="glyphicon glyphicon-log-in"></i>  Đăng nhập</a></li>
+						<% if (user) { %>
+
+						<div class="dropdown">
+
+						  <button class="btn" type="button" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i> <%= user.username %>
+						  <span class="caret"></span></button>
+						  <ul class="dropdown-menu">
+			                  <li><a href="/dashboard"><span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span> Dashboard</a></li>
+			                  <li><a href="/logout"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Log out</a></li>
+			               	</ul>
+						</div>
+                        <% } 
+							else {
+                        %>
+							<li><a href="login"><i class="glyphicon glyphicon-log-in"></i>  Login</a></li>
+						<% } %>
 					</ul>
 
 				</div>

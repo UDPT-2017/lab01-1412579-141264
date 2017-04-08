@@ -681,7 +681,16 @@ padding: 0;
 }
 
 
+.btn{
+	padding-top: 15px;
+    padding-bottom: 15px;
+    background-color: #3498DB;
+    color: #fff;
+}
 
+.btn:hover{
+	background-color: rgba(255,255,255,.1);
+}
 
 
 
