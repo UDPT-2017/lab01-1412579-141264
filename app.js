@@ -7,12 +7,25 @@ var session  = require('express-session');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
+// load up the user model
+
 
 var app      = express();
 var port     = process.env.PORT || 3000;
 
 var passport = require('passport');
 var flash    = require('connect-flash');
+
+var config = {
+  user: 'postgres', //env var: PGUSER
+  database: 'lab01', //env var: PGDATABASE
+  password: '1345314', //env var: PGPASSWORD
+  host: 'localhost', // Server hosting the postgres database
+  port: 5432, //env var: PGPORT
+  max: 10, // max number of clients in the pool
+  idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
+};
+
 
 
 // configuration ===============================================================

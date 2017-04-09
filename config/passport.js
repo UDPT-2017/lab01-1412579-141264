@@ -3,10 +3,11 @@
 // load all the things we need
 var LocalStrategy   = require('passport-local').Strategy;
 
-// load up the user model
-var pg = require('pg');
+
 var bcrypt = require('bcrypt-nodejs');
 
+
+var pg = require('pg');
 var config = {
   user: 'postgres', //env var: PGUSER
   database: 'lab01', //env var: PGDATABASE
@@ -16,6 +17,7 @@ var config = {
   max: 10, // max number of clients in the pool
   idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
 };
+
 
 const pool = new pg.Pool(config);
 
@@ -72,6 +74,8 @@ module.exports = function(passport) {
 
                     var insertQuery = "insert into users(username,password,role,email,fullname)values('" + newUserMysql.username +"','"+ newUserMysql.password +"',null,null,null) RETURNING id";
                     pool.query(insertQuery,function(err, rows) {
+                         if (err)
+                            return done(err);
                         newUserMysql.id = rows.rows[0].id;
                         return done(null, newUserMysql);
                     });

@@ -24,8 +24,31 @@
 	              $('.row-offcanvas-left').toggleClass('active');
 	            });
             });
+    	</script>
+    	<script type="text/javascript">
+            
+            $(document).ready(function() {
+             	$("#post").click(function(e){
+             		var flag = 0;
+             		if(!$("#title").val()){
+             			flag=1;
+             			$('#title-alert').append("<p style='color: red;''>Please enter post title</p>").delay(2000).slideUp();
+             		}
+             		if(!$("#thumbnail").val()){
+             			flag=1;
+             			$('#thumbnail-alert').append("<p style='color: red;''>Please select image thumbnail</p>").delay(2000).slideUp();
+             		}
+             		if(!$("#content").val()){
+             			flag=1;
+             			$('#content-alert').append("<p style='color: red;''>Please enter post content</p>").delay(2000).slideUp();
+             		}
+             		if(flag==1){
+             			e.preventDefault();
+             		}
+             	});
+            });
 
 
-    </script>
+   		 </script>
 	</body>
 </html>

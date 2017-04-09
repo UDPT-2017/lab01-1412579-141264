@@ -56,7 +56,28 @@ module.exports = function(app, passport) {
 	}));
 
 	app.get('/dashboard',function(req,res){
+		res.render('dashboard.ejs',{
+			user : req.user // get the user out of session and pass to template
+		});
+	});
 
+	app.get('/post',function(req,res){
+		res.render('newpost.ejs',{
+			user : req.user // get the user out of session and pass to template
+		});
+	});
+	app.post('/post',function(req,res){
+		console.log(req.body.title);
+		console.log(req.body.thumbnail);
+		console.log(req.body.content);
+		console.log(req.body.id);
+		//var insertQuery = "insert into users(username,password,role,email,fullname)values('" + newUserMysql.username +"','"+ newUserMysql.password +"',null,null,null) RETURNING id";
+        // pool.query(insertQuery,function(err, rows) {
+        //      if (err)
+        //         return done(err);
+        //     newUserMysql.id = rows.rows[0].id;
+        //     return done(null, newUserMysql);
+        // });
 	});
 
 	// =====================================
