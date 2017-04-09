@@ -12,8 +12,8 @@
 				</ol>
 					<h2>Create new post</h2>
 					<form action="/post" method="post" enctype='multipart/form-data'>
-							<% if(user){ %>
-							<textarea style="display: none;" name="id" id="id" cols="0" rows="0"><%= user.id %></textarea>
+					<% if(user){ %>
+						<input type="hidden" name="id" value="<%= user.id %>">
 							<%}%>
                             <fieldset>
                                 <div class="form-group">

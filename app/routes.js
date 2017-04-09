@@ -17,14 +17,15 @@ module.exports = function(app, passport) {
 
 	const pool = new pg.Pool(config);
 	var fs = require('fs');
-	
+	var dateFormat = require('dateformat');
+	var now = new Date();
 	var slug = require('slug');
 	app.get('/', function(req, res) {
 		pool.connect(function (err) {
 		  if (err) return console.log(err);
 
 			  // execute a query on our database
-			  pool.query('SELECT * FROM post ORDER BY idpost DESC OFFSET 0 LIMIT 2', function (err, result) {
+			  pool.query('SELECT * FROM post,users where post.iduser = users.id ORDER BY idpost DESC OFFSET 0 LIMIT 2', function (err, result) {
 			    if (err) {
 			    	res.end();
 			    	return console.log(err);
@@ -75,7 +76,7 @@ module.exports = function(app, passport) {
 		failureFlash : true // allow flash messages
 	}));
 
-	app.get('/dashboard',function(req,res){
+	app.get('/dashboard', isLoggedIn,function(req,res){
 		res.render('dashboard.ejs',{
 			user : req.user // get the user out of session and pass to template
 		});
@@ -104,15 +105,18 @@ module.exports = function(app, passport) {
 	//post add new post using body-parser and upload with multer
 	app.post('/post', upload.single('thumbnail'), function(req,res){
 		//console.log('first test:' + JSON.stringify(req.file));
-		thumbnailPath = '<img src = "images/' + req.file.filename +'">';
 		//console.log(thumbnailPath);
-		var insertQuery = "insert into post(title,slug,content,thumbnail,id)values('" +
+		var insertQuery = "insert into post(title,slug,content,thumbnail,iduser,view,date)values('" +
 		req.body.title +"','"+ 
 		slug(req.body.title,"-") +"','"+ 
 		req.body.content +"','"+ 
-		thumbnailPath +"','"+
-		req.body.id +"')";
+		req.file.filename +"','"+
+		req.body.id + "','"+
+		0 + "','"+
+		dateFormat(now, "dddd, mmmm dS, yyyy, HH:MM ") +
+		"')";
         pool.query(insertQuery,function(err, rows) {
+        	
              if (err)
                 return console.log(err);     
             res.redirect('/post');
