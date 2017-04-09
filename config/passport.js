@@ -2,7 +2,7 @@
 
 // load all the things we need
 var LocalStrategy   = require('passport-local').Strategy;
-
+var FacebookStrategy = require('passport-facebook').Strategy;
 
 var bcrypt = require('bcrypt-nodejs');
 
@@ -23,45 +23,89 @@ const pool = new pg.Pool(config);
 
 module.exports = function(passport) {
 
-    // =========================================================================
-    // passport session setup ==================================================
-    // =========================================================================
-    // required for persistent login sessions
-    // passport needs ability to serialize and unserialize users out of session
-
-    // used to serialize the user for the session
     passport.serializeUser(function(user, done) {
-        done(null, user.id);
+        done(null, user);
     });
 
-    // used to deserialize the user
-    passport.deserializeUser(function(id, done) {
-        pool.query("SELECT * FROM users WHERE id = '"+id+"'", function(err, rows){
-            done(err, rows.rows[0]);
+    passport.deserializeUser(function(user, done) {
+      done(null, user);
+    });
+
+    passport.use(new FacebookStrategy({
+
+        // pull in our app id and secret from our auth.js file
+        clientID        : '310019682781511',
+        clientSecret    : '5406f26498d9c2cdb251e3dfa5c7b7c0',
+        callbackURL     : 'http://localhost:3000/auth/facebook/callback',
+        profileFields   : ['id', 'emails', 'name','profileUrl','photos'] //get field recall
+
+    },
+
+    //config facebook login
+    function(token, refreshToken, profile, done) {
+        process.nextTick(function() {
+
+            // find the user in the database based on their facebook id
+            pool.query("SELECT * FROM facebook WHERE id = '"+ profile.id+"'", function(err, user) {
+
+                // if there is an error, stop everything and return that
+                // ie an error connecting to the database
+                if (err)
+                    return done(err);
+
+                // if the user is found, then log them in
+                if (user.rows.length > 0) {
+                    return done(null, user.rows[0]); // user found, return that user
+                } else {
+
+                    var newFacebooker = {
+                        id: profile.id,
+                        token: token,
+                        email: profile.emails[0].value,
+                        name: profile.name.givenName + ' ' + profile.name.familyName,
+                        url: profile.profileUrl,
+                        picture: profile.photos[0].value
+                    };
+                    console.log(newFacebooker);
+                    // if there is no user found with that facebook id, create them
+                    var insertQuery = "insert into facebook(id,token,email,name,picture,url)values('" +
+                    newFacebooker.id +"','"+ 
+                    newFacebooker.token +"','"+ 
+                    newFacebooker.email +"','"+ 
+                    newFacebooker.name  +"','"+ 
+                    newFacebooker.picture  + "','"+ 
+                    newFacebooker.url  +
+                    "')";
+                    pool.query(insertQuery,function(err, rows) {
+                         if (err)
+                            return console.log(err);     
+                       
+                    });
+
+                    return done(null, newFacebooker);
+                }
+
+            });
         });
-    });
 
-    // =========================================================================
-    // LOCAL SIGNUP ============================================================
-    // =========================================================================
-    // we are using named strategies since we have one for login and one for signup
-    // by default, if there was no name, it would just be called 'local'
+    }));
+
+
 
     passport.use(
         'local-signup',
         new LocalStrategy({
-            // by default, local strategy uses username and password, we will override with email
+
             usernameField : 'username',
             passwordField : 'password',
             passReqToCallback : true // allows us to pass back the entire request to the callback
         },
         function(req, username, password, done) {
-            // find a user whose email is the same as the forms email
-            // we are checking to see if the user trying to login already exists
+            //check user input
             pool.query("SELECT * FROM users WHERE username = '" + username + "'", function(err, rows) {
-                if (err)
+                if (err) //error
                     return done(err);
-                if (rows.rows.length > 0) {
+                if (rows.rows.length > 0) { //if user existed
                     return done(null, false, req.flash('signupMessage', 'That username is already taken.'));
                 } 
                 else {
@@ -84,12 +128,8 @@ module.exports = function(passport) {
         })
     );
 
-    // =========================================================================
-    // LOCAL LOGIN =============================================================
-    // =========================================================================
-    // we are using named strategies since we have one for login and one for signup
-    // by default, if there was no name, it would just be called 'local'
-
+   
+    //config local login
     passport.use(
         'local-login',
         new LocalStrategy({

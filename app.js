@@ -19,10 +19,9 @@ var flash    = require('connect-flash');
 require('./config/passport')(passport);
 
 app.use(express.static('public'));
-
-// set up our express application
-app.use(morgan('dev')); // log every request to the console
-app.use(cookieParser()); // read cookies (needed for auth)
+//set up application
+app.use(morgan('dev')); // log every request to the console -> need to debug
+app.use(cookieParser()); // read cookie => for auth
 app.use(bodyParser.urlencoded({
 	extended: true
 }));
@@ -38,7 +37,7 @@ app.use(session({
  } )); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
-app.use(flash()); // use connect-flash for flash messages stored in session
+app.use(flash()); // session flash message
 
 
 

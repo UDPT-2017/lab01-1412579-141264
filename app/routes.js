@@ -20,6 +20,9 @@ module.exports = function(app, passport) {
 	var now = new Date();
 	var slug = require('slug');
 	app.get('/', function(req, res) {
+		// fs.unlink('public/images/90x60-1.jpg', function(err){
+		//     if (err) console.log(err);
+		// });
 		pool.connect(function (err) {
 		  if (err) return console.log(err);
 
@@ -149,9 +152,18 @@ module.exports = function(app, passport) {
              if (err)
                 return console.log(err);     
             res.redirect('/post');
-           
         });
 	});
+
+	app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
+
+    // handle the callback after facebook has authenticated the user
+    app.get('/auth/facebook/callback',
+        passport.authenticate('facebook', {
+            successRedirect : '/',
+            failureRedirect : '/login'
+        }));
+
 
 	// Log out
 	app.get('/logout', function(req, res) {

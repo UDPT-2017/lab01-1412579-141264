@@ -44,9 +44,12 @@
 
 						<div class="dropdown">
 
-						  <button class="btnn" type="button" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i> <%= user.username %>
+						  <button class="btnn" type="button" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i> 
+								<%= user.username%>
+								<%= user.name%>
 						  <span class="caret"></span></button>
 						  <ul class="dropdown-menu">
+						      <li><a href="<%= user.url %>"><img style="display: block;margin: 0 auto;" src="<%= user.picture%>"></li>
 			                  <li><a href="/dashboard"><span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span> Dashboard</a></li>
 			                  <li><a href="/logout"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Log out</a></li>
 			               	</ul>
