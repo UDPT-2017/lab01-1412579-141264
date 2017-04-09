@@ -4,7 +4,9 @@ module.exports = function(app, passport) {
 	// =====================================
 	// HOME PAGE (with login links) ========
 	// =====================================
+	var slug = require('slug');
 	app.get('/', function(req, res) {
+		//console.log(slug('địt con mẹ cộng sản ăn cứt','-'));
 		res.render('index.ejs',{
 			user : req.user // get the user out of session and pass to template
 		}); // load the index.ejs file
@@ -53,15 +55,8 @@ module.exports = function(app, passport) {
 		failureFlash : true // allow flash messages
 	}));
 
-	// =====================================
-	// PROFILE SECTION =========================
-	// =====================================
-	// we will want this protected so you have to be logged in to visit
-	// we will use route middleware to verify this (the isLoggedIn function)
-	app.get('/profile', isLoggedIn, function(req, res) {
-		res.render('profile.ejs', {
-			user : req.user // get the user out of session and pass to template
-		});
+	app.get('/dashboard',function(req,res){
+
 	});
 
 	// =====================================
