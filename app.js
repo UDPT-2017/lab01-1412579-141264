@@ -1,13 +1,11 @@
 // server.js
 
-// set up ======================================================================
-// get all the tools we need
+// setup 
 var express  = require('express');
 var session  = require('express-session');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
-// load up the user model
 
 
 var app      = express();
@@ -17,10 +15,8 @@ var passport = require('passport');
 var flash    = require('connect-flash');
 
 
-// configuration ===============================================================
-// connect to our database
 
-require('./config/passport')(passport); // pass passport for configuration
+require('./config/passport')(passport);
 
 app.use(express.static('public'));
 

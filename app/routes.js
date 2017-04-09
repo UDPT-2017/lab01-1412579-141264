@@ -1,5 +1,8 @@
 // app/routes.js
+
 module.exports = function(app, passport) {
+
+	//loading pg and config postgresql server
 	var pg = require('pg');
 	var config = {
 	  user: 'postgres', //env var: PGUSER
@@ -14,9 +17,7 @@ module.exports = function(app, passport) {
 
 	const pool = new pg.Pool(config);
 	var fs = require('fs');
-	// =====================================
-	// HOME PAGE (with login links) ========
-	// =====================================
+	
 	var slug = require('slug');
 	app.get('/', function(req, res) {
 		pool.connect(function (err) {
@@ -39,45 +40,37 @@ module.exports = function(app, passport) {
 		});
 	});
 
-	// =====================================
-	// LOGIN ===============================
-	// =====================================
-	// show the login form
+	//show login form
 	app.get('/login', Logged, function(req, res) {
-
-		// render the page and pass in any flash data if it exists
 		res.render('login.ejs', { message: req.flash('loginMessage') });
 	});
 
-	// process the login form
+	// post login
 	app.post('/login', passport.authenticate('local-login', {
-            successRedirect : '/', // redirect to the secure profile section
-            failureRedirect : '/login', // redirect back to the signup page if there is an error
+            successRedirect : '/', // redirect to homepage if user logged
+            failureRedirect : '/login', // redirect back to the loggin page if fail
             failureFlash : true // allow flash messages
 		}),
         function(req, res) {
-            console.log("hello");
-
+            //console.log("hello");
+            //remember me
             if (req.body.remember) {
               req.session.cookie.maxAge = 1000 * 60 * 3;
             } else {
               req.session.cookie.expires = false;
             }
-        res.redirect('/');
+        res.redirect('/'); //redirect to Home
     });
 
-	// =====================================
-	// SIGNUP ==============================
-	// =====================================
-	// show the signup form
+	//Sign Up form
 	app.get('/signup', function(req, res) {
 		// render the page and pass in any flash data if it exists
 		res.render('signup.ejs', { message: req.flash('signupMessage') });
 	});
 
-	// process the signup form
+	// post signup
 	app.post('/signup', passport.authenticate('local-signup', {
-		successRedirect : '/', // redirect to the secure profile section
+		successRedirect : '/login', // redirect to login if success,  auto login and back to home
 		failureRedirect : '/signup', // redirect back to the signup page if there is an error
 		failureFlash : true // allow flash messages
 	}));
@@ -94,6 +87,7 @@ module.exports = function(app, passport) {
 		});
 	});
 
+	//multer help upload fille quickly, it image here
 	var multer  = require('multer')
 		
 	var storage = multer.diskStorage({
@@ -107,6 +101,7 @@ module.exports = function(app, passport) {
 
 	var upload = multer({ storage: storage })
 
+	//post add new post using body-parser and upload with multer
 	app.post('/post', upload.single('thumbnail'), function(req,res){
 		//console.log('first test:' + JSON.stringify(req.file));
 		thumbnailPath = '<img src = "images/' + req.file.filename +'">';
@@ -125,9 +120,7 @@ module.exports = function(app, passport) {
         });
 	});
 
-	// =====================================
-	// LOGOUT ==============================
-	// =====================================
+	// Log out
 	app.get('/logout', function(req, res) {
 		req.logout();
 		res.redirect('/');
@@ -147,10 +140,10 @@ function isLoggedIn(req, res, next) {
 
 function Logged(req, res, next) {
 
-	// if user is authenticated in the session, carry on
+	// if user isnt authenticated in the session, carry on
 	if (!req.isAuthenticated())
 		return next();
 
-	// if they aren't redirect them to the home page
+	// if they are redirect them to the home page
 	res.redirect('/');
 }
