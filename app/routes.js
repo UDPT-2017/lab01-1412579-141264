@@ -14,7 +14,6 @@ module.exports = function(app, passport) {
 	  idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
 	};
 
-
 	const pool = new pg.Pool(config);
 	var fs = require('fs');
 	var dateFormat = require('dateformat');
@@ -86,6 +85,36 @@ module.exports = function(app, passport) {
 		res.render('newpost.ejs',{
 			user : req.user // get the user out of session and pass to template
 		});
+	});
+
+	app.get('/post/:id/:slug',function(req,res){
+		var id = req.params.id;
+		pool.connect(function (err) {
+		  if (err) return console.log(err);
+		  	//update view of post
+	  		pool.query("update post set view=view+1 where post.idpost=" + id, function (err, result) {
+			    if (err) {
+			    	res.end();
+			    	return console.log(err);
+			    }
+			});
+			  // execute a query on our database
+			pool.query("SELECT * FROM post,users where post.idpost=" + id +" and post.iduser = users.id ", function (err, result) {
+			    if (err) {
+			    	res.end();
+			    	return console.log(err);
+			    }
+			    ///console.log(result.rows[0].slug);
+			    
+			    res.render('post.ejs',{
+			    	user : req.user,
+					post : result.rows[0]
+				}); 
+			});
+
+			
+		});
+
 	});
 
 	//multer help upload fille quickly, it image here
