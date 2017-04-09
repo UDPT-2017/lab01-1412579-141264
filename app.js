@@ -16,24 +16,13 @@ var port     = process.env.PORT || 3000;
 var passport = require('passport');
 var flash    = require('connect-flash');
 
-var config = {
-  user: 'postgres', //env var: PGUSER
-  database: 'lab01', //env var: PGDATABASE
-  password: '1345314', //env var: PGPASSWORD
-  host: 'localhost', // Server hosting the postgres database
-  port: 5432, //env var: PGPORT
-  max: 10, // max number of clients in the pool
-  idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
-};
-
-
 
 // configuration ===============================================================
 // connect to our database
 
 require('./config/passport')(passport); // pass passport for configuration
 
-app.use(express.static('public'))
+app.use(express.static('public'));
 
 // set up our express application
 app.use(morgan('dev')); // log every request to the console
@@ -54,6 +43,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
+
 
 
 // routes ======================================================================
