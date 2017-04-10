@@ -105,19 +105,24 @@ module.exports = function(app, passport) {
 			pool.query("SELECT * FROM post,users where post.idpost=" + id +" and post.iduser = users.id ", function (err, result) {
 			    if (err) {
 			    	res.end();
-			    	return console.log(err);
+			    	return console.log("post: " + err);
 			    }
 			    ///console.log(result.rows[0].slug);
-			    
-			    res.render('post.ejs',{
-			    	user : req.user,
-					post : result.rows[0]
-				}); 
+			    pool.query("SELECT * FROM comment,users where comment.idpost=" + id +" and comment.id = users.id ", function (err, comment) {
+				    if (err) {
+				    	res.end();
+				    	return console.log("comment: " + err);
+				    }
+				    
+				    
+				    res.render('post.ejs',{
+				    	user : req.user,
+						post : result.rows[0],
+						cmt: comment
+					}); 
+				});
 			});
-
-			
 		});
-
 	});
 
 	//multer help upload fille quickly, it image here

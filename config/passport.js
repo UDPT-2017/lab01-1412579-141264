@@ -13,7 +13,7 @@ var config = {
   database: 'lab01', //env var: PGDATABASE
   password: '1345314', //env var: PGPASSWORD
   host: 'localhost', // Server hosting the postgres database
-  port: 5432, //env var: PGPORT
+  port: 5432, //env     var: PGPORT
   max: 10, // max number of clients in the pool
   idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
 };
@@ -106,7 +106,7 @@ module.exports = function(passport) {
                 if (err) //error
                     return done(err);
                 if (rows.rows.length > 0) { //if user existed
-                    return done(null, false, req.flash('signupMessage', 'That username is already taken.'));
+                    return done(null, false, req.flash('signupMessage', 'Username is already taken.'));
                 } 
                 else {
                     // if there is no user with that username
@@ -145,13 +145,13 @@ module.exports = function(passport) {
                 // console.log(rows.rows.length);
                 if (err)
                     return done(err);
-                if (rows.rows.length < 0) {
-                    return done(null, false, req.flash('loginMessage', 'No user found.')); // req.flash is the way to set flashdata using connect-flash
+                if (rows.rows.length == 0) {
+                    return done(null, false, req.flash('loginMessage', 'Please check your Username and Password.!!!')); // req.flash is the way to set flashdata using connect-flash
                 }
 
                 // if the user is found but the password is wrong
                 if (!bcrypt.compareSync(password, rows.rows[0].password))
-                    return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.')); // create the loginMessage and save it to session as flashdata
+                    return done(null, false, req.flash('loginMessage', 'Please check your Username and Password.!!!')); // create the loginMessage and save it to session as flashdata
 
                 // all is well, return successful user
                 return done(null, rows.rows[0]);

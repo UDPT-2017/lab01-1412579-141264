@@ -10,11 +10,11 @@
 		<link rel="icon" href="http://localhost:3000/images/favicon.ico">
 		<title>Mini SNS | Bootstrap and NodeJS</title>
 		<!-- Bootstrap core CSS -->
-		<link href="http://localhost:3000/css/bootstrap.min.css" rel="stylesheet">
+		<link href="/css/bootstrap.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 		<!-- Custom styles for this template -->
-		<link href="http://localhost:3000/css/jquery.bxslider.css" rel="stylesheet">
-		<link href="http://localhost:3000/css/style.css" rel="stylesheet">
+		<link href="/css/jquery.bxslider.css" rel="stylesheet">
+		<link href="/css/style.css" rel="stylesheet">
 	</head>
 	<body>
 		<!-- Navigation -->
@@ -50,6 +50,7 @@
 						  <span class="caret"></span></button>
 						  <ul class="dropdown-menu">
 						      <li><a href="<%= user.url %>"><img style="display: block;margin: 0 auto;" src="<%= user.picture%>"></li>
+						      <li><a href="#"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> <%= user.email%></a></li>
 			                  <li><a href="/dashboard"><span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span> Dashboard</a></li>
 			                  <li><a href="/logout"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Log out</a></li>
 			               	</ul>
@@ -57,7 +58,7 @@
                         <% } 
 							else {
                         %>
-							<li><a href="login"><i class="glyphicon glyphicon-log-in"></i>  Login</a></li>
+							<li><a href="/login"><i class="glyphicon glyphicon-log-in"></i>  Login</a></li>
 						<% } %>
 					</ul>
 
