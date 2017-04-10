@@ -45,10 +45,14 @@ Yêu cầu **không bắt buộc**:
 * [v] Gửi mail cho tác giả khi có người dùng comment vào bài viết của họ. (**MSSV**)
 
 Liệt kê các **yêu cầu nâng cao** đã thực hiện:
-* [ ] Chức năng 1
-* [ ] Chức năng 2
-
-
+* [v] Cho phép người dùng đăng nhập, đăng xuất, đăng ký thông tin tài khoản. (**1412579**)
+* [v] Có thể xem danh sách các comment của từng bài viết.  (**1412579**)
+* [v] Cho phép người dùng đã đăng nhập đăng thêm bài viết mới. (**1412579**)
+* [v] Cho phép người dùng đã đăng nhập comment cho bài viết. (**1412579**)
+* [v] Cho phép người dùng đăng nhập bằng tài khoản facebook và lấy ảnh đại diện, email từ facebook. (**1412579**)
+* [v] Chỉ cho phép người tạo bài viết được phép chỉnh sửa bài viết mình đã đăng. (**1412579**)
+* [v] Gửi mail cho người dùng khi người dùng đã đăng nhập thành công. (**1412579**)
+* [v] Gửi mail cho tác giả khi có người dùng comment vào bài viết của họ. (**1412579**)
 ## Demo
 
 Link ảnh GIF demo ứng dụng:
