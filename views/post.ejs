@@ -40,8 +40,11 @@
 						<h2>Comment</h2>
 							<div class="status-upload">
 								<form action="/comment" method="post">
-									<textarea placeholder="What are you thinking about?" ></textarea>
-									<button type="submit" class="btn btn-success green"><i class="fa fa-share"></i> Share</button>
+								<input type="hidden" name="idauthor" value="<%= post.id %>">
+								<input type="hidden" name="id" value="<%= user.id %>">
+								<input type="hidden" name="idpost" value="<%= post.idpost %>">
+									<textarea name="content" id="content" placeholder="What are you thinking about?" ></textarea>
+									<button type="submit" id="cmtBut" class="btn btn-success green"><i class="fa fa-share"></i> Share</button>
 								</form>
 							</div><!-- Status Upload  -->
 						</div><!-- Widget Area -->
@@ -53,7 +56,7 @@
 			                <div class="post-heading">
 			                    <div class="pull-left meta">
 			                        <div class="title h5">
-			                            <a href="#"><b><%= comment.username %> </b></a>
+			                            <a href="#"><b><%= comment.fullname %> </b></a>
 			                            made a comment.
 			                        </div>
 			                       

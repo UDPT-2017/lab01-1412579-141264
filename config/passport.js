@@ -6,6 +6,17 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 
 var bcrypt = require('bcrypt-nodejs');
 
+const nodemailer = require('nodemailer');
+
+
+let transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'iuemanhngatxiu@gmail.com',
+        pass: '1345314bommy'
+    }
+});
+
 
 var pg = require('pg');
 var config = {
@@ -46,7 +57,7 @@ module.exports = function(passport) {
         process.nextTick(function() {
 
             // find the user in the database based on their facebook id
-            pool.query("SELECT * FROM facebook WHERE id = '"+ profile.id+"'", function(err, user) {
+            pool.query("SELECT * FROM users WHERE idfacebook = '"+ profile.id+"'", function(err, user) {
 
                 // if there is an error, stop everything and return that
                 // ie an error connecting to the database
@@ -55,6 +66,21 @@ module.exports = function(passport) {
 
                 // if the user is found, then log them in
                 if (user.rows.length > 0) {
+                    let mailOptions = {
+                        from: '"Mini SNS 👻 Push Email Login" <iuemanhngatxiu@gmail.com>', // sender address
+                        to: user.rows[0].email, // list of receivers
+                        subject: 'Hello ✔, someone logged your account!!!', // Subject line
+                        text: 'Someone logged your account!!!', // plain text body
+                        html: '<b>Hello world - Ahihi đồ ngốc!!</b>' // html body
+                    };
+
+                    // send mail with defined transport object
+                    transporter.sendMail(mailOptions, (error, info) => {
+                        if (error) {
+                            return console.log(error);
+                        }
+                        console.log('Message %s sent: %s', info.messageId, info.response);
+                    });
                     return done(null, user.rows[0]); // user found, return that user
                 } else {
 
@@ -62,17 +88,17 @@ module.exports = function(passport) {
                         id: profile.id,
                         token: token,
                         email: profile.emails[0].value,
-                        name: profile.name.givenName + ' ' + profile.name.familyName,
+                        fullname: profile.name.givenName + ' ' + profile.name.familyName,
                         url: profile.profileUrl,
                         picture: profile.photos[0].value
                     };
                     console.log(newFacebooker);
                     // if there is no user found with that facebook id, create them
-                    var insertQuery = "insert into facebook(id,token,email,name,picture,url)values('" +
+                    var insertQuery = "insert into users(username,password,role,email,fullname,idfacebook,token,picture,url) values(null,null,null,'" +
+                    newFacebooker.email +"','"+
+                    newFacebooker.fullname  +"','"+ 
                     newFacebooker.id +"','"+ 
-                    newFacebooker.token +"','"+ 
-                    newFacebooker.email +"','"+ 
-                    newFacebooker.name  +"','"+ 
+                    newFacebooker.token +"','"+                    
                     newFacebooker.picture  + "','"+ 
                     newFacebooker.url  +
                     "')";
@@ -113,10 +139,11 @@ module.exports = function(passport) {
                     // create the user
                     var newUserMysql = {
                         username: username,
+                        fullname: username,
                         password: bcrypt.hashSync(password, null, null)  // use the generateHash function in our user model
                     };
 
-                    var insertQuery = "insert into users(username,password,role,email,fullname)values('" + newUserMysql.username +"','"+ newUserMysql.password +"',null,null,null) RETURNING id";
+                    var insertQuery = "insert into users(username,password,role,email,fullname,idfacebook,token,picture,url) values('" + newUserMysql.username +"','"+ newUserMysql.password +"',null,null," + newUserMysql.fullname + ",null,null,null,null) RETURNING id";
                     pool.query(insertQuery,function(err, rows) {
                          if (err)
                             return done(err);
@@ -153,6 +180,21 @@ module.exports = function(passport) {
                 if (!bcrypt.compareSync(password, rows.rows[0].password))
                     return done(null, false, req.flash('loginMessage', 'Please check your Username and Password.!!!')); // create the loginMessage and save it to session as flashdata
 
+                let mailOptions = {
+                    from: '"Mini SNS 👻 Push Email Login" <iuemanhngatxiu@gmail.com>', // sender address
+                    to: rows.rows[0].email, // list of receivers
+                    subject: 'Hello ✔, someone logged your account!!!', // Subject line
+                    text: 'Someone logged your account!!!', // plain text body
+                    html: '<b>Hello world - Ahihi đồ ngốc!!</b>' // html body
+                };
+
+                // send mail with defined transport object
+                transporter.sendMail(mailOptions, (error, info) => {
+                    if (error) {
+                        return console.log(error);
+                    }
+                    console.log('Message %s sent: %s', info.messageId, info.response);
+                });
                 // all is well, return successful user
                 return done(null, rows.rows[0]);
             });

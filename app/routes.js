@@ -18,7 +18,19 @@ module.exports = function(app, passport) {
 	var fs = require('fs');
 	var dateFormat = require('dateformat');
 	var now = new Date();
+	const nodemailer = require('nodemailer');
 	var slug = require('slug');
+
+
+
+	let transporter = nodemailer.createTransport({
+	    service: 'gmail',
+	    auth: {
+	        user: 'iuemanhngatxiu@gmail.com',
+	        pass: '1345314bommy'
+	    }
+	});
+
 	app.get('/', function(req, res) {
 		// fs.unlink('public/images/90x60-1.jpg', function(err){
 		//     if (err) console.log(err);
@@ -86,8 +98,51 @@ module.exports = function(app, passport) {
 
 	app.get('/post', isLoggedIn ,function(req,res){
 		res.render('newpost.ejs',{
-			user : req.user // get the user out of session and pass to template
+			user : req.user // get the user out of session and pass to emplate
 		});
+	});
+
+	app.post('/comment', function(req,res){
+		var id = req.body.id;
+		var idpost = req.body.idpost;
+		var content = req.body.content;
+		pool.connect(function (err) {
+		  if (err) return console.log(err);
+
+			  // execute a query on our database
+			  pool.query("insert into comment(idpost,id,content) values ('" + idpost + "','" + id  + "','" + content + "')" , function (err, result) {
+			    if (err) {
+			    	res.end();
+			    	return console.log(err);
+			    }
+
+			    pool.query("select * from users where id=" + req.body.idauthor , function (err, rows) {
+				    if (err) {
+				    	res.end();
+				    	return console.log(err);
+				    }
+				    // setup email data with unicode symbols
+					let mailOptions = {
+					    from: '"Mini SNS 👻 Push Email Comment" <iuemanhngatxiu@gmail.com>', // sender address
+					    to: rows.rows[0].email, // list of receivers
+					    subject: 'Hello ✔, someone was comment in your post!!!', // Subject line
+					    text: 'Someone comment in your post!!!', // plain text body
+					    html: '<b>Hello world - Ahihi đồ ngốc!!</b>' // html body
+					};
+
+					// send mail with defined transport object
+					transporter.sendMail(mailOptions, (error, info) => {
+					    if (error) {
+					        return console.log(error);
+					    }
+					    console.log('Message %s sent: %s', info.messageId, info.response);
+				    	res.redirect(req.get('referer'));
+					});
+			    });
+
+			});
+		});
+
 	});
 
 	app.get('/post/:id/:slug',function(req,res){

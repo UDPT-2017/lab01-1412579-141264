@@ -23,7 +23,15 @@
 	            $('#offcanvasleft').click(function() {
 	              $('.row-offcanvas-left').toggleClass('active');
 	            });
+                $('#cmtBut').click(function(e) {
+                  if(!$("#content").val()){
+                     alert("Please enter comment...");
+                     e.preventDefault();; 
+                  }
+                });
             });
+           
+
     	</script>
     	<script type="text/javascript">
             

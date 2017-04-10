@@ -23,7 +23,7 @@
 						</div>
 						<div class="blog-post-body">
 							<h2><a href="post/<%=  post.idpost %>/<%=  post.slug %>"> <%= post.title %> </h2>
-							<div class="post-meta"><span>by <a href="#"><%= post.username  %></a></span><span><i class="fa fa-clock-o"></i><%= post.date%></span><span><i class="fa fa-eye"></i> <a href="#"> <%= post.view%></a></span></div>
+							<div class="post-meta"><span>by <a href="#"><%= post.fullname  %></a></span><span><i class="fa fa-clock-o"></i><%= post.date%></span><span><i class="fa fa-eye"></i> <a href="#"> <%= post.view%></a></span></div>
 							<p> <%= post.content.slice(0,200) %> </p>
 							<div class="read-more"><a href="post/<%=  post.idpost %>/<%=  post.slug %>">Continue Reading</a></div>
 						</div>
