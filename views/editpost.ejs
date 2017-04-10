@@ -1,17 +1,18 @@
 <% include block/header.ejs %>		
 		<div class="container">
 		<header>
-			<a href="/"><img src="images/logo.png"></a>
+			<a href="/"><img src="/images/logo.png"></a>
 		</header>
 		<section>
 			<div class="row row-offcanvas row-offcanvas-left">
 				<div class="col-md-8 float">
 				<ol class="breadcrumb">
 				  <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
-				  <li class="breadcrumb-item"><a href="/post">Edit post</a></li>					 	
+				  <li class="breadcrumb-item"><a href="/post">Edit post</a></li>
+				  <li class="breadcrumb-item"><a href="/post"> <%= post.title%></a></li>					 	
 				</ol>
 					<h2>Create new post</h2>
-					<form action="/post" method="post" enctype='multipart/form-data'>
+					<form action="/edit/<%= post.idpost %>" method="post" enctype='multipart/form-data'>
 					<% if(user){ %>
 						<input type="hidden" name="id" value="<%= user.id %>">
 							<%}%>
@@ -19,20 +20,26 @@
                                 <div class="form-group">
                                 	<label>Title</label>
                                 	<br>
-                                    <textarea name="title" id="title" cols="70" rows="1"></textarea>
+                                    <textarea name="title" id="title" cols="70" rows="1"><%= post.title%></textarea>
                                     <div id="title-alert"></div>
                                 </div>
                                 <div class="form-group">
                                 	<label>Thumbnail</label>
                                 	<br>
+                                	<% if(post.thumbnail){ %> 
+                                		<a href="/del/<%= post.idpost %>">Delete thumbnail</a>
+                                		<br>
+                                    	<img src="/images/<%= post.thumbnail%>" width="400" height="auto">
+                                    <% }else { %>
                                     <input type="file" id="thumbnail" name="thumbnail">
+                                    <% } %>
                                     <div id="thumbnail-alert"></div>
 
                                 </div>
                                 <div class="form-group">
                                 	<label>Content</label>
                                 	<br>
-                                    <textarea name="content" id="content" cols="70" rows="3"></textarea>
+                                    <textarea name="content" id="content" cols="70" rows="10"><%= post.content %></textarea>
                                     <div id="content-alert"></div>
                                 </div>
                                 
@@ -49,11 +56,11 @@
 						<div class="widget-container">
 							<article class="widget-post">
 								<div class="post-body">
-									<h2 class="db"><i class="glyphicon glyphicon-pencil"></i><a href="post"> Create new post</a></h2>
+									<h2 class="db"><i class="glyphicon glyphicon-pencil"></i><a href="/post"> Create new post</a></h2>
 									<br>
 								</div>
 								<div class="post-body">
-									<h2 class="db"><i class="glyphicon glyphicon-list"></i><a href="listpost/<%= user.id %>"> List post</a></h2>
+									<h2 class="db"><i class="glyphicon glyphicon-list"></i><a href="/listpost/<%= user.id %>"> List post</a></h2>
 									<br>
 								</div>
 							</article>

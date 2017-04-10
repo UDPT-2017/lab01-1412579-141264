@@ -14,6 +14,21 @@ module.exports = function(app, passport) {
 	  idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
 	};
 
+
+	//multer help upload fille quickly, it image here
+	var multer  = require('multer')
+		
+	var storage = multer.diskStorage({
+	    destination: function (req, file, cb) {
+	        cb(null, 'public/images/')
+	    },
+	    filename: function (req, file, cb) {
+	        cb(null, Date.now() +"-" + file.originalname);
+	  }
+	})
+
+	var upload = multer({ storage: storage })
+
 	const pool = new pg.Pool(config);
 	var fs = require('fs');
 	var dateFormat = require('dateformat');
@@ -47,12 +62,21 @@ module.exports = function(app, passport) {
 			    // disconnect the client
 			    res.render('index.ejs',{
 					user : req.user,
-					list : result 
+					list : result ,
+					nav: 1
 				}); 
 			});
 
 			
 		});
+	});
+
+	app.get('/blog',function(req,res){
+		res.render('blog.ejs',
+			{
+				user : req.user,
+				nav: 2
+			});
 	});
 
 	//show login form
@@ -92,15 +116,115 @@ module.exports = function(app, passport) {
 
 	app.get('/dashboard', isLoggedIn,function(req,res){
 		res.render('dashboard.ejs',{
-			user : req.user // get the user out of session and pass to template
+			user : req.user,
+			nav : 0
+		});
+	});
+
+	app.get('/listpost/:id', isLoggedIn, function(req, res) {
+		if(req.user.id != req.params.id)
+			return res.redirect('/dashboard');
+		pool.connect(function (err) {
+		  if (err) return console.log(err);
+
+			  // execute a query on our database
+			  pool.query('SELECT * FROM post where post.iduser = '+ req.params.id, function (err, result) {
+			    if (err) {
+			    	res.end();
+			    	return console.log(err);
+			    }
+			    // disconnect the client
+			    res.render('listpost.ejs',{
+					user : req.user,
+					list : result,
+					nav : 0
+				}); 
+			});
+
+			
 		});
 	});
 
 	app.get('/post', isLoggedIn ,function(req,res){
 		res.render('newpost.ejs',{
-			user : req.user // get the user out of session and pass to emplate
+			user : req.user ,
+			nav : 0
 		});
 	});
+
+	app.get('/edit/:id', isLoggedIn ,function(req,res){
+		pool.connect(function (err) {
+		  if (err) return console.log(err);
+
+			  // execute a query on our database
+			  pool.query('SELECT * FROM post where post.idpost = '+ req.params.id, function (err, result) {
+			    if (err) {
+			    	res.end();
+			    	return console.log(err);
+			    }
+			    // disconnect the client
+			    res.render('editpost.ejs',{
+					user : req.user,
+					post : result.rows[0],
+					nav : 0
+				}); 
+			});
+
+			
+		});
+	});
+
+	app.post('/edit/:id', upload.single('thumbnail'), function(req,res){
+		//console.log('first test:' + JSON.stringify(req.file));
+		if(!req.file.filename){
+			var updateQuery = "update post set title ='" + 
+			req.body.title + " ', slug = '" + 
+			slug(req.body.title,"-") + "',content = '" + 
+			req.body.content + "'" +
+			"where idpost = " + req.params.id;
+	        pool.query(updateQuery,function(err, rows) {
+	             if (err)
+	                return console.log(err);     
+	            res.redirect('/listpost/'+req.user.id);
+	        });
+		}
+		else{
+			console.log(req.file.filename);
+			var updateQuery = "update post set title ='" + 
+			req.body.title + " ', slug = '" + 
+			slug(req.body.title,"-") + "',content = '" + 
+			req.body.content + "',thumbnail = '" + 
+			req.file.filename + "'" +
+			"where idpost = " + req.params.id;
+	        pool.query(updateQuery,function(err, rows) {
+	             if (err)
+	                return console.log(err);     
+	            res.redirect('/listpost/'+req.user.id);
+	        });
+		}
+
+		
+	});
+
+
+
+	app.get('/del/:id',function(req,res){
+		pool.connect(function (err) {
+		  if (err) return console.log(err);
+
+			  // execute a query on our database
+			  pool.query('update post set thumbnail = null where post.idpost = '+ req.params.id, function (err, result) {
+			    if (err) {
+			    	res.end();
+			    	return console.log(err);
+			    }
+			    // disconnect the client
+			    res.redirect('/edit/' + req.params.id);
+			});
+		});
+	})
+
+
 
 	app.post('/comment', function(req,res){
 		var id = req.body.id;
@@ -173,26 +297,14 @@ module.exports = function(app, passport) {
 				    res.render('post.ejs',{
 				    	user : req.user,
 						post : result.rows[0],
-						cmt: comment
+						cmt: comment,
+						nav: 2
 					}); 
 				});
 			});
 		});
 	});
 
-	//multer help upload fille quickly, it image here
-	var multer  = require('multer')
-		
-	var storage = multer.diskStorage({
-	    destination: function (req, file, cb) {
-	        cb(null, 'public/images/')
-	    },
-	    filename: function (req, file, cb) {
-	        cb(null, Date.now() +"-" + file.originalname);
-	  }
-	})
-
-	var upload = multer({ storage: storage })
 
 	//post add new post using body-parser and upload with multer
 	app.post('/post', upload.single('thumbnail'), function(req,res){

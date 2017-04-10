@@ -18,6 +18,11 @@
 		<script src="/js/bootstrap.min.js"></script>
 		<script src="/js/jquery.bxslider.js"></script>
 		<script src="/js/mooz.scripts.min.js"></script>
+        <!-- DataTables JavaScript -->
+        <script src="/datatables/js/jquery.dataTables.min.js"></script>
+        <script src="/datatables-plugins/dataTables.bootstrap.min.js"></script>
+        <script src="/datatables-responsive/dataTables.responsive.js"></script>
+
 		<script type="text/javascript">
             $(document).ready(function (){
 	            $('#offcanvasleft').click(function() {
@@ -28,6 +33,9 @@
                      alert("Please enter comment...");
                      e.preventDefault();; 
                   }
+                });
+                $('#dataTables-example').DataTable({
+                    responsive: true
                 });
             });
            
@@ -41,10 +49,6 @@
              		if(!$("#title").val()){
              			flag=1;
              			$('#title-alert').append("<p style='color: red;''>Please enter post title</p>").delay(2000).slideUp();
-             		}
-             		if(!$("#thumbnail").val()){
-             			flag=1;
-             			$('#thumbnail-alert').append("<p style='color: red;''>Please select image thumbnail</p>").delay(2000).slideUp();
              		}
              		if(!$("#content").val()){
              			flag=1;
