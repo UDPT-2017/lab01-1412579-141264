@@ -47,8 +47,19 @@
 					<% }else{ %>
 						<li class=""><a href="/blog">Blog</a></li>
 					<%}%>
+					<% if(nav == 3) { %>
+						<li class="active"><a href="/album">Album</a></li>
+					<% }else{ %>
 						<li><a href="/album">Album</a></li>
+					<%}%>
+					<% if(nav == 4) { %>
+					
+						<li class="active"><a href="/about">About</a></li>
+					<% }else{ %>
+					
 						<li><a href="/about">About</a></li>
+					<%}%>
+					
 					</ul>
 
 					<ul class="nav navbar-nav navbar-right">

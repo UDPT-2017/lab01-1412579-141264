@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>Mini SNS | Bootstrap and NodeJS</title>
+        <link rel="icon" href="../public/images/favicon.ico">
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href="../public/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+        <!-- Custom styles for this template -->
+        <link rel="stylesheet" href="../public/css/jquery.bxslider.css">
+        <link rel="stylesheet" href="../public/css/style.css">
+        <limk rel="stylesheet" href="../public/images/Thumbs.db">
+        <link rel="stylesheet" href="../public/css/thumbnail.css">
+
+    </head>
+    <body>
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class=""><a href="index.html">Home</a></li>
+                        <li class=""><a href="blog.html">Blog</a></li>
+                        <li class="active"><a href="album.html">Album</a></li>
+                        <li class=""><a href="about.html">About</a></li>
+                    </ul>
+ 
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a target="" href=""><i class="glyphicon glyphicon-log-in"></i>  Đăng nhập</a></li>
+                    </ul>
+ 
+                </div>
+                <!--/.nav-collapse -->
+            </div>
+        </nav>
+ 
+        <div class="container">
+        <header>
+            <a href="index.html"><img src="../public/images/logo.png"></a>
+        </header>
+ 
+                <!--Create Album-->
+        <div class="container">
+
+        <div class="row">
+
+            <div class="col-lg-12" style="margin-bottom: 20px">
+                <h1 class="page-header">School photos</h1>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                <a class="thumbnail" href="../public/images/school/img_01.jpg" >
+                    <img src="../public/images/school/img_01.jpg" alt="" style="width:300px; height: 170px">
+                    
+                </a>
+                <center>
+                    <div class="caption">
+                        <p><strong>
+                            Người đăng: Nguyễn Vân Anh<br>
+                            Lượt view: 70</strong></p>
+                    </div>
+                </center>
+            </div>
+            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                <a class="thumbnail" href="../public/images/school/img_02.jpg">
+                    <img class="img-responsive" src="../public/images/school/img_02.jpg" alt="" style="width:300px; height: 170px">
+                    
+                </a>
+                <center>
+                    <div class="caption">
+                        <p><strong>
+                            Người đăng: Lê Thanh Xuân<br>
+                            Lượt view: 50</strong></p>
+                        </div>
+                </center>
+            </div>
+            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                <a class="thumbnail" href="../public/images/school/img_03.jpg">
+                    <img class="img-responsive" src="../public/images/school/img_03.jpg" alt="" style="width:300px; height: 170px">
+                    
+                </a>
+                <center>
+                    <div class="caption">
+                        <p><strong>
+                            Người đăng: Nguyễn Gia Bảo<br>
+                            Lượt view: 70</strong></p>
+                    </div>
+                </center>
+            </div>
+            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                <a class="thumbnail" href="../public/images/school/img_04.jpg">
+                    <img class="img-responsive" src="../public/images/school/img_04.jpg" alt="" style="width:300px; height: 170px">
+                    
+                </a>
+                <center>
+                    <div class="caption">
+                        <p><strong>
+                            Người đăng: Nguyễn Yến Nhi<br>
+                            Lượt view: 50</strong></p>
+                    </div>
+                </center>
+            </div>
+            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                <a class="thumbnail" href="../public/images/school/img_05.jpg">
+                    <img class="img-responsive" src="../public/images/school/img_05.jpg" alt="" style="width:300px; height: 170px">
+                    
+                </a>
+                <center>
+                    <div class="caption">
+                        <p><strong>
+                            Người đăng: Trần Mỹ An<br>
+                            Lượt view: 50</strong></p>
+                    </div>
+                </center>
+            </div>
+            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                <a class="thumbnail" href="../public/images/school/img_06.jpg">
+                    <img class="img-responsive" src="../public/images/school/img_06.jpg" alt="" style="width:300px; height: 170px">
+                   
+                </a>
+                <center>
+                    <div class="caption">
+                        <p><strong>
+                            Người đăng: Trần Quốc Khải<br>
+                            Lượt view: 60</strong></p>
+                    </div>
+                </center>
+            </div>
+            
+        </div>
+ 
+        <footer class="footer">
+ 
+            <div class="footer-socials">
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-instagram"></i></a>
+            </div>
+ 
+            <div class="footer-bottom">
+                <i class="fa fa-copyright"></i> Copyright 2017. All rights reserved.<br>
+            </div>
+        </footer>
+ 
+        <!-- Bootstrap core JavaScript
+            ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="../public/js/bootstrap.min.js"></script>
+        <script src="../public/js/jquery.bxslider.js"></script>
+        <script src="../public/js/mooz.scripts.min.js"></script>
+        <script type="text/javascript">
+             
+             $('#offcanvasleft').click(function() {
+               $('.row-offcanvas-left').toggleClass('active');
+             });
+ 
+ 
+     </script>
+    </body>
+ </html>
