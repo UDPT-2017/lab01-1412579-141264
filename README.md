@@ -61,6 +61,8 @@ Link video demo ứng dụng:
 
 Link ảnh gif demo responsive:
 
+** http://imgur.com/dvyfytX **
+
 ![alt tag](http://imgur.com/dvyfytX)
 
 Tạo ảnh GIF với chương trình [LiceCap](http://www.cockos.com/licecap/).
