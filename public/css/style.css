@@ -470,7 +470,6 @@ footer .footer-bottom {
 }
 
 .post .post-heading {
-  height: 95px;
   padding: 20px 15px;
 }
 .post .post-heading .avatar {
@@ -681,7 +680,22 @@ padding: 0;
 }
 
 
+.btnn{
+	padding-top: 15px;
+    padding-bottom: 15px;
+    background-color: #3498DB;
+    color: #fff;
+    border:none;
+}
 
+.btnn:hover{
+	background-color: rgba(255,255,255,.1);
+}
+
+.db{
+	font-size: 25px!important; 
+	text-align: center;
+}
 
 
 

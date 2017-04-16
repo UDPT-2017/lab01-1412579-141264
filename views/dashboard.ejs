@@ -1,0 +1,53 @@
+
+<% include block/header.ejs %>		
+		<div class="container">
+		<header>
+			<a href="/"><img src="/images/logo.png"></a>
+		</header>
+		<section>
+			<div class="row row-offcanvas row-offcanvas-left">
+				<div class="col-md-8 float">
+					<article class="blog-post">
+						<div class="blog-post-body">
+							<h2><a href="post.html">Dashboard</a></h2>
+							<p>You can create new, edit, and delete your post here.</p>
+						</div>
+					</article>
+				</div>
+				<form action="">
+					<input id="<%= user.id%>" type="hidden">
+				</form>
+				<div class="col-md-4 sidebar-gutter">
+					<div class="sidebar-offcanvas" id="sidebarLeft" role="navigation">
+					<!-- sidebar-widget -->
+					<div class="sidebar-widget">
+						<h3 class="sidebar-title col-md-12 col-xs-12">POST</h3>
+						<div class="widget-container">
+							<article class="widget-post">
+								<div class="post-body">
+									<h2 class="db"><i class="glyphicon glyphicon-pencil"></i><a href="post"> Create new post</a></h2>
+									<br>
+								</div>
+								<div class="post-body">
+									<h2 class="db"><i class="glyphicon glyphicon-list"></i><a href="listpost/<%= user.id %>"> List post</a></h2>
+									<br>
+								</div>
+							</article>
+						</div>
+					</div>
+			
+					<!-- sidebar-widget -->
+					<div class="sidebar-widget">
+						<img src="http://placehold.it/600x900" class="img-rounded" alt="">
+					</div>
+					<!-- sidebar-widget -->
+
+					</div>
+					
+					</div>
+				</div>
+			</div>
+		</section>
+		</div><!-- /.container -->
+
+<% include block/footer.ejs %>		

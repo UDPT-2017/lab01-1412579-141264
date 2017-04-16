@@ -1,0 +1,237 @@
+<% include block/header.ejs %>		
+
+		<div class="container">
+		<header>
+			<a href="/"><img src="http://localhost:3000/images/logo.png"></a>
+		</header>
+		<section class="main-slider">
+			<ul class="bxslider">
+				<li><div class="slider-item"><img src="http://placehold.it/1140x500" title="Funky roots" /><h2><a href="post.html" title="Vintage-Inspired Finds for Your Home">Vintage-Inspired Finds for Your Home</a></h2></div></li>
+				<li><div class="slider-item"><img src="http://placehold.it/1140x500" title="Funky roots" /><h2><a href="post.html" title="Vintage-Inspired Finds for Your Home">Vintage-Inspired Finds for Your Home</a></h2></div></li>
+				<li><div class="slider-item"><img src="http://placehold.it/1140x500" title="Funky roots" /><h2><a href="post.html" title="Vintage-Inspired Finds for Your Home">Vintage-Inspired Finds for Your Home</a></h2></div></li>
+			</ul>
+		</section>
+		<section>
+			<div class="row row-offcanvas row-offcanvas-left">
+				<div class="col-md-8 float">
+					<article class="blog-post">
+					<ol class="breadcrumb">
+					  <li class="breadcrumb-item"><a href="/">Home</a></li>
+					  <li class="breadcrumb-item"><a href="/blog">Blog</a></li>					 	
+					  <li class="breadcrumb-item"><a href="#"><%= post.title%></a></li>
+					</ol>
+						<div class="blog-post-image">
+						
+							<a href="post.html"><img src="http://localhost:3000/images/<%= post.thumbnail%>" alt=""></a>
+							
+						</div>
+						<div class="blog-post-body">
+							<h2><a href="post.html"><%= post.title %></a></h2>
+							<div class="post-meta"><span>by <a href="#"><%= post.username %></a></span><span><i class="fa fa-clock-o"></i><%= post.date%></span><span><i class="fa fa-eye"></i> <a href="#"><%= post.view %></a></span></div>
+							<div class="blog-post-text">
+
+								<p><%= post.content%></p>
+							</div>
+						</div>
+					</article>
+					<% if(user){ %>
+					<div class="row">
+						<div class="widget-area no-padding blank">
+						<h2>Comment</h2>
+							<div class="status-upload">
+								<form action="/comment" method="post">
+								<input type="hidden" name="idauthor" value="<%= post.id %>">
+								<input type="hidden" name="id" value="<%= user.id %>">
+								<input type="hidden" name="idpost" value="<%= post.idpost %>">
+									<textarea name="content" id="content" placeholder="What are you thinking about?" ></textarea>
+									<button type="submit" id="cmtBut" class="btn btn-success green"><i class="fa fa-share"></i> Share</button>
+								</form>
+							</div><!-- Status Upload  -->
+						</div><!-- Widget Area -->
+					</div>
+					<% }%>
+					<div class="row" style="margin-top: 20px">
+						<% cmt.rows.forEach(function(comment) { %>
+			            <div class="panel panel-white post panel-shadow">
+			                <div class="post-heading">
+			                    <div class="pull-left meta">
+			                        <div class="title h5">
+			                            <a href="#"><b><%= comment.fullname %> </b></a>
+			                            made a comment.
+			                        </div>
+			                       
+			                    </div>
+			                </div> 
+			                <div class="post-description"> 
+			                    <p><%= comment.content %></p>
+<!-- 			                    <div class="stats">
+			                        <a href="#" class="btn btn-default stat-item">
+			                            <i class="fa fa-thumbs-up icon"></i>2
+			                        </a>
+			                        <a href="#" class="btn btn-default stat-item">
+			                            <i class="fa fa-thumbs-down icon"></i>12
+			                        </a>
+			                    </div> -->
+			                </div>
+			            </div>
+			            <% }); %>
+					</div>
+					
+
+				</div>
+	            
+
+				<div class="col-md-4 sidebar-gutter">
+					<div class="sidebar-offcanvas" id="sidebarLeft" role="navigation">
+					<!-- sidebar-widget -->
+					<div class="sidebar-widget">
+						<h3 class="sidebar-title col-md-12 col-xs-12">Lastest Post</h3>
+						<div class="widget-container">
+							<article class="widget-post">
+								<div class="post-image">
+									<a href="post.html"><img src="http://placehold.it/90x60" alt=""></a>
+								</div>
+								<div class="post-body">
+									<h2><a href="post.html">The State of the Word 2014</a></h2>
+									<div class="post-meta">
+										<span><i class="fa fa-clock-o"></i> 2. august 2015</span> <span><a href="post.html"><i class="fa fa-eye"></i> 23</a></span>
+									</div>
+								</div>
+							</article>
+							<article class="widget-post">
+								<div class="post-image">
+									<a href="post.html"><img src="http://placehold.it/90x60" alt=""></a>
+								</div>
+								<div class="post-body">
+									<h2><a href="post.html">Why The Muppets Needs to Channel 30 Rock</a></h2>
+									<div class="post-meta">
+										<span><i class="fa fa-clock-o"></i> 2. august 2015</span> <span><a href="post.html"><i class="fa fa-eye"></i> 23</a></span>
+									</div>
+								</div>
+							</article>
+							<article class="widget-post">
+								<div class="post-image">
+									<a href="post.html"><img src="http://placehold.it/90x60" alt=""></a>
+								</div>
+								<div class="post-body">
+									<h2><a href="post.html">The State of the Word 2014</a></h2>
+									<div class="post-meta">
+										<span><i class="fa fa-clock-o"></i> 2. august 2015</span> <span><a href="post.html"><i class="fa fa-eye"></i> 23</a></span>
+									</div>
+								</div>
+							</article>
+							<article class="widget-post">
+								<div class="post-image">
+									<a href="post.html"><img src="http://placehold.it/90x60" alt=""></a>
+								</div>
+								<div class="post-body">
+									<h2><a href="post.html">Vintage-Inspired Finds for Your Home</a></h2>
+									<div class="post-meta">
+										<span><i class="fa fa-clock-o"></i> 2. august 2015</span> <span><a href="post.html"><i class="fa fa-eye"></i> 23</a></span>
+									</div>
+								</div>
+							</article>
+							<article class="widget-post">
+								<div class="post-image">
+									<a href="post.html"><img src="http://placehold.it/90x60" alt=""></a>
+								</div>
+								<div class="post-body">
+									<h2><a href="post.html">The State of the Word 2014</a></h2>
+									<div class="post-meta">
+										<span><i class="fa fa-clock-o"></i> 2. august 2015</span> <span><a href="post.html"><i class="fa fa-eye"></i> 23</a></span>
+									</div>
+								</div>
+							</article>
+						</div>
+					</div>
+					<!-- sidebar-widget -->
+					<div class="sidebar-widget">
+						<h3 class="sidebar-title">Featured Posts</h3>
+						<div class="widget-container">
+							<article class="widget-post">
+								<div class="post-image">
+									<a href="post.html"><img src="http://placehold.it/90x60" alt=""></a>
+								</div>
+								<div class="post-body">
+									<h2><a href="post.html">The State of the Word 2014</a></h2>
+									<div class="post-meta">
+										<span><i class="fa fa-clock-o"></i> 2. august 2015</span> <span><a href="post.html"><i class="fa fa-eye"></i> 23</a></span>
+									</div>
+								</div>
+							</article>
+							<article class="widget-post">
+								<div class="post-image">
+									<a href="post.html"><img src="http://placehold.it/90x60" alt=""></a>
+								</div>
+								<div class="post-body">
+									<h2><a href="post.html">Why The Muppets Needs to Channel 30 Rock</a></h2>
+									<div class="post-meta">
+										<span><i class="fa fa-clock-o"></i> 2. august 2015</span> <span><a href="post.html"><i class="fa fa-eye"></i> 23</a></span>
+									</div>
+								</div>
+							</article>
+							<article class="widget-post">
+								<div class="post-image">
+									<a href="post.html"><img src="http://placehold.it/90x60" alt=""></a>
+								</div>
+								<div class="post-body">
+									<h2><a href="post.html">The State of the Word 2014</a></h2>
+									<div class="post-meta">
+										<span><i class="fa fa-clock-o"></i> 2. august 2015</span> <span><a href="post.html"><i class="fa fa-eye"></i> 23</a></span>
+									</div>
+								</div>
+							</article>
+							<article class="widget-post">
+								<div class="post-image">
+									<a href="post.html"><img src="http://placehold.it/90x60" alt=""></a>
+								</div>
+								<div class="post-body">
+									<h2><a href="post.html">Vintage-Inspired Finds for Your Home</a></h2>
+									<div class="post-meta">
+										<span><i class="fa fa-clock-o"></i> 2. august 2015</span> <span><a href="post.html"><i class="fa fa-eye"></i> 23</a></span>
+									</div>
+								</div>
+							</article>
+							<article class="widget-post">
+								<div class="post-image">
+									<a href="post.html"><img src="http://placehold.it/90x60" alt=""></a>
+								</div>
+								<div class="post-body">
+									<h2><a href="post.html">The State of the Word 2014</a></h2>
+									<div class="post-meta">
+										<span><i class="fa fa-clock-o"></i> 2. august 2015</span> <span><a href="post.html"><i class="fa fa-eye"></i> 23</a></span>
+									</div>
+								</div>
+							</article>
+						</div>
+					</div>
+					
+					<!-- sidebar-widget -->
+					<div class="sidebar-widget">
+						<h3 class="sidebar-title">Categories</h3>
+						<div class="widget-container">
+							<ul>
+								<li><a href="#">Fashion</a></li>
+								<li><a href="#">Art</a></li>
+								<li><a href="#">Design</a></li>
+								<li><a href="#">Featured</a></li>
+								<li><a href="#">Graphics</a></li>
+								<li><a href="#">Peoples</a></li>
+								<li><a href="#">Uncategorized</a></li>
+							</ul>
+						</div>
+					</div>
+					<!-- sidebar-widget -->
+					<div class="sidebar-widget">
+						<img src="http://placehold.it/600x900" class="img-rounded" alt="">
+					</div>
+					<!-- sidebar-widget -->
+
+					</div>
+					
+					</div>
+				</div>
+			</div>
+		</section>
+		</div><!-- /.container -->
+<% include block/footer.ejs %>		
