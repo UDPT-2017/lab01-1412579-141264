@@ -20,12 +20,12 @@ let transporter = nodemailer.createTransport({
 
 var pg = require('pg');
 var config = {
-  user: 'gdmtricpeziklq', //env var: PGUSER
-  database: 'dao0ojg7cfc0k1', //env var: PGDATABASE
-  password: 'bf6beabffe8135029da75bad78093f673c7d1a92099cdc773a8d31367fd7167d', //env var: PGPASSWORD
-  host: 'ec2-54-221-254-72.compute-1.amazonaws.com', // Server hosting the postgres database
+  user: 'postgres', //env var: PGUSER
+  database: 'lab01', //env var: PGDATABASE
+  password: '1345314', //env var: PGPASSWORD
+  host: 'localhost', // Server hosting the postgres database
   port: 5432, //env     var: PGPORT
-  max: 20, // max number of clients in the pool
+  max: 10, // max number of clients in the pool
   idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
 };
 
@@ -47,7 +47,7 @@ module.exports = function(passport) {
         // pull in our app id and secret from our auth.js file
         clientID        : '310019682781511',
         clientSecret    : '5406f26498d9c2cdb251e3dfa5c7b7c0',
-        callbackURL     : 'https://lab01-579-564.herokuapp.com/auth/facebook/callback',
+        callbackURL     : 'http://localhost:3000/auth/facebook/callback',
         profileFields   : ['id', 'emails', 'name','profileUrl','photos'] //get field recall
 
     },
