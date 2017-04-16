@@ -137,18 +137,18 @@ module.exports = function(passport) {
                 else {
                     // if there is no user with that username
                     // create the user
-                    var newUserMysql = {
+                    var newUser = {
                         username: username,
                         fullname: username,
                         password: bcrypt.hashSync(password, null, null)  // use the generateHash function in our user model
                     };
-
-                    var insertQuery = "insert into users(username,password,role,email,fullname,idfacebook,token,picture,url) values('" + newUserMysql.username +"','"+ newUserMysql.password +"',null,null," + newUserMysql.fullname + ",null,null,null,null) RETURNING id";
+                    //console.log(newUser);
+                    var insertQuery = "insert into users(username,password,role,email,fullname,idfacebook,token,picture,url) values('" + newUser.username +"','"+ newUser.password +"',null,null,'" + newUser.fullname + "',null,null,null,null) RETURNING id";
                     pool.query(insertQuery,function(err, rows) {
                          if (err)
                             return done(err);
-                        newUserMysql.id = rows.rows[0].id;
-                        return done(null, newUserMysql);
+                        newUser.id = rows.rows[0].id;
+                        return done(null, newUser);
                     });
                 }
             });

@@ -50,6 +50,7 @@ module.exports = function(app, passport) {
 		// fs.unlink('public/images/90x60-1.jpg', function(err){
 		//     if (err) console.log(err);
 		// });
+		
 		pool.connect(function (err) {
 		  if (err) return console.log(err);
 
@@ -72,11 +73,25 @@ module.exports = function(app, passport) {
 	});
 
 	app.get('/blog',function(req,res){
-		res.render('blog.ejs',
-			{
-				user : req.user,
-				nav: 2
+		pool.connect(function (err) {
+		  if (err) return console.log(err);
+
+			  // execute a query on our database
+			  pool.query('SELECT * FROM post,users where post.iduser = users.id ORDER BY idpost DESC OFFSET 0 LIMIT 4', function (err, result) {
+			    if (err) {
+			    	res.end();
+			    	return console.log(err);
+			    }
+			    // disconnect the client
+			    res.render('blog.ejs',{
+					user : req.user,
+					list : result ,
+					nav: 2
+				}); 
 			});
+
+			
+		});
 	});
 
 	//show login form
@@ -268,6 +283,8 @@ module.exports = function(app, passport) {
 		});
 
 	});
+
+
 
 	app.get('/post/:id/:slug',function(req,res){
 		var id = req.params.id;
