@@ -5,15 +5,14 @@ module.exports = function(app, passport) {
 	//loading pg and config postgresql server
 	var pg = require('pg');
 	var config = {
-	  user: 'postgres', //env var: PGUSER
-	  database: 'lab01', //env var: PGDATABASE
-	  password: '1345314', //env var: PGPASSWORD
-	  host: 'localhost', // Server hosting the postgres database
-	  port: 5432, //env var: PGPORT
+	  user: 'crqfnorj', //env var: PGUSER
+	  database: 'crqfnorj', //env var: PGDATABASE
+	  password: 'zU1M4Lirsc3epBq-JGw9QS-fPfZseYVd', //env var: PGPASSWORD
+	  host: 'stampy.db.elephantsql.com', // Server hosting the postgres database
+	  port: 5432, //env     var: PGPORT
 	  max: 10, // max number of clients in the pool
 	  idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
 	};
-
 
 	//multer help upload fille quickly, it image here
 	var multer  = require('multer')
