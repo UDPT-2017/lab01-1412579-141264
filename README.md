@@ -55,10 +55,13 @@ Liệt kê các **yêu cầu nâng cao** đã thực hiện:
 * [v] Gửi mail cho tác giả khi có người dùng comment vào bài viết của họ. (**1412579**)
 ## Demo
 
-Link ảnh GIF demo ứng dụng:
+Link video demo ứng dụng:
 
 [![Demo Lab01 - 1412579 - 1412564](https://img.youtube.com/vi/NXeAIx_026g/0.jpg)](https://www.youtube.com/watch?v=NXeAIx_026g)
 
+Link ảnh gif demo responsive:
+
+![alt tag](http://imgur.com/dvyfytX)
 
 Tạo ảnh GIF với chương trình [LiceCap](http://www.cockos.com/licecap/).
 
