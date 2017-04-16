@@ -274,7 +274,7 @@ module.exports = function(app, passport) {
 					        return console.log(error);
 					    }
 					    console.log('Message %s sent: %s', info.messageId, info.response);
-				    	res.redirect(req.get('referer'));
+				    	res.redirect('/');
 					});
 			    });
 
